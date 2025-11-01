@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Inventario</h1>
+</header>
+
+<main>
+  <!-- Formulario para agregar productos -->
+  <form id="formProducto" class="form">
+    <input type="text" id="nombre" placeholder="Nombre del producto" required>
+    <input type="number" id="precio" placeholder="Precio" required>
+    <input type="number" id="stock" placeholder="Cantidad" required>
+    <button type="submit">Agregar Producto</button>
+  </form>
+
+  <h2>Lista de Productos</h2>
+  <div id="list"></div>
+
+  <p><a href="index.html">Volver al menú</a></p>
+</main>
+
+<script src="js/inventario.js"></script>
+</body>
+</html>

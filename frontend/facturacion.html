@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Facturación</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Facturación</h1>
+</header>
+
+<main>
+  <!-- Tabla de facturas -->
+  <section>
+    <h2>Listado de Facturas</h2>
+    <table id="tablaFacturas">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Fecha</th>
+          <th>Total ($)</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí se insertan las facturas vía JS -->
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Modal / Detalle de factura -->
+  <section id="detalleFactura" class="modal" style="display:none;">
+    <div class="modal-content">
+      <h2>Detalle de Factura</h2>
+      <p><strong>Factura:</strong> <span id="detFacturaId"></span></p>
+      <p><strong>Cliente:</strong> <span id="detCliente"></span></p>
+      <p><strong>Fecha:</strong> <span id="detFecha"></span></p>
+      <p><strong>Total:</strong> $<span id="detTotal"></span></p>
+
+      <h3>Productos vendidos</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody id="detItems">
+          <!-- Items por JS -->
+        </tbody>
+      </table>
+
+      <button id="cerrarDetalle">Cerrar</button>
+    </div>
+  </section>
+
+  <p><a href="index.html">Volver al menú</a></p>
+</main>
+
+<script src="js/facturacion.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clientes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Gestión de Clientes</h1>
+  </header>
+
+  <main>
+    <form id="clienteForm">
+      <input type="text" id="nombres" placeholder="Nombres" required><br>
+      <input type="text" id="apellidos" placeholder="Apellidos" required><br>
+      <input type="text" id="cedula" placeholder="Cédula" pattern="[0-9]{6,15}" title="Ingrese solo números (6 a 15 dígitos)"><br>
+      <button type="submit">Crear Cliente</button>
+    </form>
+
+    <div id="msg"></div>
+    <p><a href="index.html">Volver al menú</a></p>
+  </main>
+
+  <!-- Aquí conectamos el JS externo -->
+  <script src="js/clientes.js"></script>
+</body>
+</html>

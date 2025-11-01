@@ -1,0 +1,16 @@
+{
+  "name": "sistema-ventas-backend",
+  "version": "1.0.0",
+  "description": "Backend API minimal para Sistema de Ventas (demo)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.3.0",
+    "knex": "^2.5.1",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  }
+}

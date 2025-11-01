@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ventas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><h1>Ventas</h1></header>
+
+<main>
+  <!-- Selección de cliente -->
+  <label>Cliente ID:
+    <input type="number" id="cliente_id" placeholder="Ej: 1" required>
+  </label>
+
+  <!-- Tabla de productos para seleccionar -->
+  <h3>Seleccionar productos</h3>
+  <table class="tabla">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Cantidad</th>
+      </tr>
+    </thead>
+    <tbody id="tablaProductos"></tbody>
+  </table>
+
+  <!-- Total -->
+  <p><strong>Total: $<span id="totalVenta">0.00</span></strong></p>
+  <button id="btnRegistrarVenta">Registrar Venta</button>
+
+  <div id="msg"></div>
+  <p><a href="index.html">Volver al menú</a></p>
+</main>
+
+<script src="js/ventas.js"></script>
+</body>
+</html>

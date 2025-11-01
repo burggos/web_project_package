@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reportes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Reportes</h1>
+</header>
+
+<main>
+  <section>
+    <h2>Generar Reporte</h2>
+    <select id="tipoReporte">
+      <option value="inventario">Inventario</option>
+      <option value="ventas">Ventas</option>
+    </select>
+    <button id="btnGenerar">Generar</button>
+  </section>
+
+  <section id="resultadoReporte">
+    <!-- Aquí se cargará automáticamente el reporte -->
+  </section>
+
+  <p><a href="index.html">Volver al menú</a></p>
+</main>
+
+<script src="js/reportes.js"></script>
+</body>
+</html>
