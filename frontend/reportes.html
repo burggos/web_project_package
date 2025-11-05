@@ -1,33 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reportes</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Módulo de Reportes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<header>
-  <h1>Reportes</h1>
-</header>
+<body class="bg-gray-100 text-gray-800 min-h-screen">
 
-<main>
-  <section>
-    <h2>Generar Reporte</h2>
-    <select id="tipoReporte">
-      <option value="inventario">Inventario</option>
-      <option value="ventas">Ventas</option>
-    </select>
-    <button id="btnGenerar">Generar</button>
-  </section>
+  <!-- Encabezado -->
+  <header class="bg-[#003366] text-white p-4">
+    <h1 class="text-2xl font-bold">Sistema de Gestión - Módulo de Reportes</h1>
+  </header>
 
-  <section id="resultadoReporte">
-    <!-- Aquí se cargará automáticamente el reporte -->
-  </section>
+  <!-- Contenido principal -->
+  <main class="p-6 max-w-5xl mx-auto">
 
-  <p><a href="index.html">Volver al menú</a></p>
-</main>
+    <!-- Filtros -->
+    <section class="bg-white p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold text-[#003366] mb-4">Filtrar Reportes</h2>
+      <form class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <select class="border p-2 rounded w-full">
+          <option>Tipo de reporte</option>
+          <option>Ventas</option>
+          <option>Inventario</option>
+          <option>Clientes</option>
+        </select>
+        <input type="date" class="border p-2 rounded w-full" placeholder="Fecha desde">
+        <input type="date" class="border p-2 rounded w-full" placeholder="Fecha hasta">
+        <button type="button" class="md:col-span-3 bg-[#003366] text-white py-2 rounded hover:bg-blue-800">Generar Reporte</button>
+      </form>
+    </section>
 
-<script src="js/reportes.js"></script>
+    <!-- Resultados -->
+    <section class="bg-white p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold text-[#003366] mb-4">Resultados</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border border-gray-300 text-sm text-left">
+          <thead class="bg-[#003366] text-white">
+            <tr>
+              <th class="p-2 border">Fecha</th>
+              <th class="p-2 border">Detalle</th>
+              <th class="p-2 border">Cantidad</th>
+              <th class="p-2 border">Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-gray-50 hover:bg-gray-100">
+              <td class="p-2 border">2025-06-10</td>
+              <td class="p-2 border">Venta: Producto A</td>
+              <td class="p-2 border">2</td>
+              <td class="p-2 border">$40.000</td>
+            </tr>
+            <tr class="bg-gray-50 hover:bg-gray-100">
+              <td class="p-2 border">2025-06-11</td>
+              <td class="p-2 border">Ingreso: Producto B</td>
+              <td class="p-2 border">10</td>
+              <td class="p-2 border">$150.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Exportar -->
+    <section class="bg-white p-4 rounded shadow flex gap-4 justify-end">
+      <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Exportar PDF</button>
+      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Exportar Excel</button>
+    </section>
+
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="bg-[#003366] text-white text-center p-4 mt-10">
+    <p>&copy; 2025 Sistema de Gestión - Reportes</p>
+  </footer>
+
 </body>
 </html>
