@@ -1,52 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Sistema de Ventas - Dashboard</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel Principal - Sistema de Gestión</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header class="main-header">
-    <h1>📊 Sistema de Ventas</h1>
-  </header>
+<body class="bg-gray-100 text-gray-800 min-h-screen">
 
-  <main class="dashboard">
-    <section class="dashboard-intro">
-      <h2>Bienvenido</h2>
-      <p>Seleccione un módulo para comenzar a gestionar su sistema.</p>
-    </section>
+  <!-- Encabezado -->
+ <header class="bg-[#003366] text-white p-4 flex justify-between items-center">
+  <div>
+    <h1 class="text-2xl font-bold">Sistema de Gestión Empresarial</h1>
+    <p class="text-sm">Bienvenido, Usuario</p>
+  </div>
+  <a href="iniciodesesion.html" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-sm">
+    Cerrar sesión
+  </a>
+</header>
 
-    <section class="card-grid">
-      <a href="ventas.html" class="card">
-        <h3>🛒 Ventas</h3>
-        <p>Registrar nuevas ventas y gestionar transacciones.</p>
-      </a>
+  <!-- Contenido principal -->
+  <main class="p-6 max-w-5xl mx-auto">
+    <h2 class="text-xl font-semibold text-[#003366] mb-4">Seleccione un módulo:</h2>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
-      <a href="inventario.html" class="card">
-        <h3>📦 Inventario</h3>
-        <p>Controlar productos disponibles y stock.</p>
-      </a>
+      <!-- Ventas -->
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="text-lg font-semibold text-[#003366] mb-2">Ventas</h3>
+        <p class="text-sm text-gray-600">Registrar ventas y consultar historial.</p>
+        <a href="paginadeventas.html" class="mt-4 inline-block bg-[#003366] text-white px-4 py-2 rounded hover:bg-blue-800">Ingresar</a>
+      </div>
 
-      <a href="facturacion.html" class="card">
-        <h3>💵 Facturación</h3>
-        <p>Generar y consultar facturas de ventas.</p>
-      </a>
+      <!-- Inventario -->
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="text-lg font-semibold text-[#003366] mb-2">Inventario</h3>
+        <p class="text-sm text-gray-600">Gestionar productos y control de stock.</p>
+        <a href="inventario.html" class="mt-4 inline-block bg-[#003366] text-white px-4 py-2 rounded hover:bg-blue-800">Ingresar</a>
+      </div>
 
-      <a href="clientes.html" class="card">
-        <h3>👥 Clientes</h3>
-        <p>Registrar y administrar datos de clientes.</p>
-      </a>
+      <!-- Facturación -->
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="text-lg font-semibold text-[#003366] mb-2">Facturación</h3>
+        <p class="text-sm text-gray-600">Emitir y revisar facturas.</p>
+        <a href="facturacion.html" class="mt-4 inline-block bg-[#003366] text-white px-4 py-2 rounded hover:bg-blue-800">Ingresar</a>
+      </div>
 
-      <a href="reportes.html" class="card">
-        <h3>📈 Reportes</h3>
-        <p>Visualizar reportes y estadísticas del sistema.</p>
-      </a>
-    </section>
+      <!-- Clientes -->
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="text-lg font-semibold text-[#003366] mb-2">Clientes</h3>
+        <p class="text-sm text-gray-600">Registrar y consultar datos de clientes.</p>
+        <a href="clientes.html" class="mt-4 inline-block bg-[#003366] text-white px-4 py-2 rounded hover:bg-blue-800">Ingresar</a>
+      </div>
+
+      <!-- Reportes -->
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
+        <h3 class="text-lg font-semibold text-[#003366] mb-2">Reportes</h3>
+        <p class="text-sm text-gray-600">Visualizar estadísticas e informes.</p>
+        <a href="reportes.html" class="mt-4 inline-block bg-[#003366] text-white px-4 py-2 rounded hover:bg-blue-800">Ingresar</a>
+      </div>
+
+    </div>
   </main>
 
-  <footer class="main-footer">
-    &copy; 2025 Sistema de Ventas — Desarrollado por Sr. Gabriel
+  <!-- Pie de página -->
+  <footer class="bg-[#003366] text-white text-center p-4 mt-10">
+    <p>&copy; 2025 Sistema de Gestión - Todos los derechos reservados.</p>
   </footer>
+
 </body>
 </html>

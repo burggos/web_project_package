@@ -1,29 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Clientes</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Módulo de Clientes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>Gestión de Clientes</h1>
+<body class="bg-gray-100 text-gray-800 min-h-screen">
+
+  <!-- Encabezado -->
+  <header class="bg-[#003366] text-white p-4">
+    <h1 class="text-2xl font-bold">Sistema de Gestión - Módulo de Clientes</h1>
   </header>
 
-  <main>
-    <form id="clienteForm">
-      <input type="text" id="nombres" placeholder="Nombres" required><br>
-      <input type="text" id="apellidos" placeholder="Apellidos" required><br>
-      <input type="text" id="cedula" placeholder="Cédula" pattern="[0-9]{6,15}" title="Ingrese solo números (6 a 15 dígitos)"><br>
-      <button type="submit">Crear Cliente</button>
-    </form>
+  <!-- Contenido principal -->
+  <main class="p-6 max-w-5xl mx-auto">
 
-    <div id="msg"></div>
-    <p><a href="index.html">Volver al menú</a></p>
+    <!-- Registro de cliente -->
+    <section class="bg-white p-6 rounded shadow mb-6">
+      <h2 class="text-xl font-semibold text-[#003366] mb-4">Registrar Nuevo Cliente</h2>
+      <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" placeholder="Nombre completo" class="border p-2 rounded w-full">
+        <input type="text" placeholder="Cédula / NIT" class="border p-2 rounded w-full">
+        <input type="email" placeholder="Correo electrónico" class="border p-2 rounded w-full">
+        <input type="tel" placeholder="Teléfono" class="border p-2 rounded w-full">
+        <input type="text" placeholder="Dirección" class="md:col-span-2 border p-2 rounded w-full">
+        <button type="button" class="md:col-span-2 bg-[#003366] text-white py-2 rounded hover:bg-blue-800">Guardar Cliente</button>
+      </form>
+    </section>
+
+    <!-- Tabla de clientes -->
+    <section class="bg-white p-6 rounded shadow">
+      <h2 class="text-xl font-semibold text-[#003366] mb-4">Listado de Clientes</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border border-gray-300 text-sm text-left">
+          <thead class="bg-[#003366] text-white">
+            <tr>
+              <th class="p-2 border">Nombre</th>
+              <th class="p-2 border">Cédula/NIT</th>
+              <th class="p-2 border">Correo</th>
+              <th class="p-2 border">Teléfono</th>
+              <th class="p-2 border">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-gray-50 hover:bg-gray-100">
+              <td class="p-2 border">Juan Pérez</td>
+              <td class="p-2 border">10203040</td>
+              <td class="p-2 border">juan@example.com</td>
+              <td class="p-2 border">3001234567</td>
+              <td class="p-2 border">
+                <button class="bg-yellow-500 text-white px-2 py-1 rounded text-sm hover:bg-yellow-600">Editar</button>
+                <button class="bg-red-600 text-white px-2 py-1 rounded text-sm hover:bg-red-700">Eliminar</button>
+              </td>
+            </tr>
+            <tr class="bg-gray-50 hover:bg-gray-100">
+              <td class="p-2 border">María Gómez</td>
+              <td class="p-2 border">98765432</td>
+              <td class="p-2 border">maria@example.com</td>
+              <td class="p-2 border">3109876543</td>
+              <td class="p-2 border">
+                <button class="bg-yellow-500 text-white px-2 py-1 rounded text-sm hover:bg-yellow-600">Editar</button>
+                <button class="bg-red-600 text-white px-2 py-1 rounded text-sm hover:bg-red-700">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Aquí conectamos el JS externo -->
-  <script src="js/clientes.js"></script>
+  <!-- Pie de página -->
+  <footer class="bg-[#003366] text-white text-center p-4 mt-10">
+    <p>&copy; 2025 Sistema de Gestión - Clientes</p>
+  </footer>
+
 </body>
 </html>
