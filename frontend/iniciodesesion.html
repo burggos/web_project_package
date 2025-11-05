@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de Sesión - Sistema de Ventas</title>
+  <style>
+    body {
+      background-color: #F0F0F0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #003366;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    .error {
+      color: #FF0000;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sistema de Gestión de Ventas</h1>
+    <input type="text" id="username" placeholder="Nombre de usuario">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button onclick="login()">Iniciar Sesión</button>
+    <p class="error" id="errorMessage">Usuario o contraseña incorrectos</p>
+  </div>
+
+  <script>
+    function login() {
+      // Redirige directamente a panel.html sin validación
+      window.location.href = "paginaprincipal.html";
+    }
+  </script>
+</body>
+</html>
