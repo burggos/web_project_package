@@ -1,6 +1,6 @@
 // facturacion.js
 
-const apiURL = "/backend/routes/facturacion.js"; // Cambiar si tu backend no corre en la misma ruta
+const apiURL = "/api/factura"; // Cambiar si tu backend no corre en la misma ruta
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarFacturas();
