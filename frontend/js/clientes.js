@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('clienteForm');
   const msg = document.getElementById('msg');
+  const tbody = document.getElementById('clientes-tbody');
 
   // Cargar listado de clientes
   async function loadClientes() {
@@ -8,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch('/api/clientes');
       const payload = await res.json();
       const clientes = payload && payload.data ? payload.data : payload;
-      const tbody = document.querySelector('table tbody');
       tbody.innerHTML = clientes.map(c => `
         <tr class="bg-gray-50 hover:bg-gray-100">
           <td class="p-2 border">${(c.nombres||'') + ' ' + (c.apellidos||'')}</td>
@@ -45,12 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-
+    // Validación visual
+    if (!form.checkValidity()) {
+      msg.innerHTML = '<span style="color:red;">Por favor completa los campos obligatorios correctamente.</span>';
+      return;
+    }
     // Obtener datos del formulario
     const body = {
       nombres: document.getElementById('nombres').value.trim(),
       apellidos: document.getElementById('apellidos').value.trim(),
-      cedula: document.getElementById('cedula').value.trim()
+      cedula: document.getElementById('cedula').value.trim(),
+      telefono: document.getElementById('telefono').value.trim(),
+      correo: document.getElementById('correo').value.trim()
     };
 
     try {
@@ -60,13 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify(body)
       });
 
-      if (!res.ok) throw new Error(`Error ${res.status}: No se pudo guardar`);
+      if (!res.ok) {
+        const data = await res.json().catch(()=>({}));
+        let msgText = data && data.errors ? data.errors.map(e=>e.msg).join('<br>') : `Error ${res.status}: No se pudo guardar`;
+        throw new Error(msgText);
+      }
 
-      const data = await res.json();
       msg.innerHTML = `<span style="color:green;">✅ Cliente creado correctamente</span>`;
       form.reset(); // Limpiar formulario
-  // recargar listado
-  loadClientes();
+      // recargar listado
+      loadClientes();
 
     } catch (error) {
       msg.innerHTML = `<span style="color:red;">❌ Error: ${error.message}</span>`;

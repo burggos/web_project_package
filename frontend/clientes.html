@@ -1,3 +1,9 @@
+</body>
+<script>
+if (!localStorage.getItem('usuario')) {
+  window.location.href = 'login.html';
+}
+</script>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,6 +13,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800 min-h-screen">
+  <nav class="bg-white shadow p-4 flex justify-end mb-6">
+  <a href="index.html" class="btn-menu">Menú</a>
+  </nav>
 
   <!-- Encabezado -->
   <header class="bg-[#003366] text-white p-4">
@@ -20,15 +29,15 @@
     <section class="bg-white p-6 rounded shadow mb-6">
       <h2 class="text-xl font-semibold text-[#003366] mb-4">Registrar Nuevo Cliente</h2>
       <!-- Añadido: ids y form id para que coincida con frontend/js/clientes.js -->
-      <form id="clienteForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input id="nombres" name="nombres" type="text" placeholder="Nombres" class="border p-2 rounded w-full">
+      <form id="clienteForm" class="grid grid-cols-1 md:grid-cols-2 gap-4" autocomplete="off">
+        <input id="nombres" name="nombres" type="text" placeholder="Nombres*" class="border p-2 rounded w-full" required minlength="2">
         <input id="apellidos" name="apellidos" type="text" placeholder="Apellidos" class="border p-2 rounded w-full">
         <input id="cedula" name="cedula" type="text" placeholder="Cédula / NIT" class="border p-2 rounded w-full">
-        <input id="telefono" name="telefono" type="tel" placeholder="Teléfono" class="border p-2 rounded w-full">
+        <input id="telefono" name="telefono" type="tel" placeholder="Teléfono" class="border p-2 rounded w-full" pattern="[0-9]{7,15}">
         <input id="correo" name="correo" type="email" placeholder="Correo electrónico" class="md:col-span-2 border p-2 rounded w-full">
         <button type="submit" class="md:col-span-2 bg-[#003366] text-white py-2 rounded hover:bg-blue-800">Guardar Cliente</button>
       </form>
-      <div id="msg" class="mt-4 text-center" aria-live="polite"></div>
+      <div id="msg" class="mt-4 text-center text-sm" aria-live="polite"></div>
     </section>
 
     <!-- Tabla de clientes -->
@@ -45,27 +54,8 @@
               <th class="p-2 border">Acciones</th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="bg-gray-50 hover:bg-gray-100">
-              <td class="p-2 border">Juan Pérez</td>
-              <td class="p-2 border">10203040</td>
-              <td class="p-2 border">juan@example.com</td>
-              <td class="p-2 border">3001234567</td>
-              <td class="p-2 border">
-                <button class="bg-yellow-500 text-white px-2 py-1 rounded text-sm hover:bg-yellow-600">Editar</button>
-                <button class="bg-red-600 text-white px-2 py-1 rounded text-sm hover:bg-red-700">Eliminar</button>
-              </td>
-            </tr>
-            <tr class="bg-gray-50 hover:bg-gray-100">
-              <td class="p-2 border">María Gómez</td>
-              <td class="p-2 border">98765432</td>
-              <td class="p-2 border">maria@example.com</td>
-              <td class="p-2 border">3109876543</td>
-              <td class="p-2 border">
-                <button class="bg-yellow-500 text-white px-2 py-1 rounded text-sm hover:bg-yellow-600">Editar</button>
-                <button class="bg-red-600 text-white px-2 py-1 rounded text-sm hover:bg-red-700">Eliminar</button>
-              </td>
-            </tr>
+          <tbody id="clientes-tbody">
+            <!-- Cargado dinámicamente por JS -->
           </tbody>
         </table>
       </div>

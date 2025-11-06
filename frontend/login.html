@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <main class="bg-white p-8 rounded shadow-md w-full max-w-sm">
+    <h1 class="text-2xl font-bold text-center text-[#003366] mb-6">Iniciar Sesión</h1>
+    <form id="loginForm" class="space-y-4" autocomplete="off">
+      <input id="usuario" name="usuario" type="text" placeholder="Usuario" class="border p-2 rounded w-full" required autofocus>
+      <input id="password" name="password" type="password" placeholder="Contraseña" class="border p-2 rounded w-full" required>
+      <button type="submit" class="bg-[#003366] text-white py-2 rounded w-full hover:bg-blue-800">Entrar</button>
+    </form>
+    <div id="msg" class="mt-4 text-center text-sm" aria-live="polite"></div>
+  </main>
+  <script src="js/login.js"></script>
+</body>
+</html>

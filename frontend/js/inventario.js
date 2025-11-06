@@ -1,3 +1,42 @@
+// Manejo de formulario de nuevo producto
+document.getElementById('formNuevoProducto').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const nombre = document.getElementById('nombre_prod').value.trim();
+  const descripcion = document.getElementById('desc_prod').value.trim();
+  const precio = parseFloat(document.getElementById('precio_prod').value);
+  const cantidad = parseInt(document.getElementById('cantidad_prod').value, 10);
+  const msg = document.getElementById('msgProd');
+  msg.textContent = '';
+  if (!nombre || isNaN(precio) || precio <= 0 || isNaN(cantidad) || cantidad < 1) {
+    msg.textContent = 'Completa todos los campos obligatorios correctamente.';
+    msg.className = 'mensaje error';
+    return;
+  }
+  try {
+    // Crear producto
+    const resProd = await fetch('/api/productos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, descripcion, precio })
+    });
+    if (!resProd.ok) throw new Error('Error al crear producto');
+    const prod = await resProd.json();
+    // Agregar al inventario
+    const resInv = await fetch('/api/inventario', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ producto_id: prod.id || prod.insertId || prod.data?.id, cantidad })
+    });
+    if (!resInv.ok) throw new Error('Error al agregar al inventario');
+    msg.textContent = '✅ Producto creado y agregado al inventario';
+    msg.className = 'mensaje sucess';
+    e.target.reset();
+    await loadInventario();
+  } catch (err) {
+    msg.textContent = '❌ ' + (err.message || 'Error inesperado');
+    msg.className = 'mensaje error';
+  }
+});
 const API_INVENTARIO = "/api/inventario";
 const API_PRODUCTOS = "/api/productos";
 

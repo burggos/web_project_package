@@ -1,3 +1,24 @@
+/* ✅ Botón Menú principal */
+.btn-menu {
+  display: inline-block;
+  background: #003366;
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin: 18px 0 24px 0;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+.btn-menu:hover {
+  background: #1E90FF;
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(30,144,255,0.15);
+}
 /* 🎯 Estilos generales */
 body {
   font-family: Arial, Helvetica, sans-serif;

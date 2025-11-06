@@ -8,6 +8,7 @@ const inventarioRoutes = require('./routes/inventario');
 const ventasRoutes = require('./routes/ventas');
 const reportesRoutes = require('./routes/reportes');
 const productosRoutes = require('./routes/productos');
+const loginRoute = require('./routes/login');
 
 module.exports = function createApp(db, logger) {
   const app = express();
@@ -22,6 +23,7 @@ module.exports = function createApp(db, logger) {
   app.use('/api/inventario', inventarioRoutes(db));
   app.use('/api/ventas', ventasRoutes(db));
   app.use('/api/reportes', reportesRoutes(db));
+  app.use('/api/login', loginRoute);
 
   // health
   app.get('/health', (req, res) => res.json({ ok: true }));

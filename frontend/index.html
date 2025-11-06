@@ -14,9 +14,21 @@
     <h1 class="text-2xl font-bold">Sistema de Gestión Empresarial</h1>
     <p class="text-sm">Bienvenido, Usuario</p>
   </div>
-  <a href="iniciodesesion.html" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-sm">
+  <button id="logoutBtn" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 text-sm">
     Cerrar sesión
-  </a>
+  </button>
+</body>
+<script>
+// Redirigir a login si no hay sesión
+if (!localStorage.getItem('usuario')) {
+  window.location.href = 'login.html';
+}
+// Cerrar sesión
+document.getElementById('logoutBtn').onclick = function() {
+  localStorage.removeItem('usuario');
+  window.location.href = 'login.html';
+};
+</script>
 </header>
 
   <!-- Contenido principal -->

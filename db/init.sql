@@ -1,3 +1,14 @@
+-- Tabla de usuarios para login
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  usuario VARCHAR(50) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  rol VARCHAR(20) DEFAULT 'admin',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Usuario admin por defecto (password plano: admin)
+INSERT IGNORE INTO usuarios (usuario, password, rol) VALUES ('admin', 'admin', 'admin');
 CREATE DATABASE IF NOT EXISTS sistemaventas;
 USE sistemaventas;
 
