@@ -19,14 +19,16 @@
     <!-- Registro de cliente -->
     <section class="bg-white p-6 rounded shadow mb-6">
       <h2 class="text-xl font-semibold text-[#003366] mb-4">Registrar Nuevo Cliente</h2>
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input type="text" placeholder="Nombre completo" class="border p-2 rounded w-full">
-        <input type="text" placeholder="Cédula / NIT" class="border p-2 rounded w-full">
-        <input type="email" placeholder="Correo electrónico" class="border p-2 rounded w-full">
-        <input type="tel" placeholder="Teléfono" class="border p-2 rounded w-full">
-        <input type="text" placeholder="Dirección" class="md:col-span-2 border p-2 rounded w-full">
-        <button type="button" class="md:col-span-2 bg-[#003366] text-white py-2 rounded hover:bg-blue-800">Guardar Cliente</button>
+      <!-- Añadido: ids y form id para que coincida con frontend/js/clientes.js -->
+      <form id="clienteForm" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input id="nombres" name="nombres" type="text" placeholder="Nombres" class="border p-2 rounded w-full">
+        <input id="apellidos" name="apellidos" type="text" placeholder="Apellidos" class="border p-2 rounded w-full">
+        <input id="cedula" name="cedula" type="text" placeholder="Cédula / NIT" class="border p-2 rounded w-full">
+        <input id="telefono" name="telefono" type="tel" placeholder="Teléfono" class="border p-2 rounded w-full">
+        <input id="correo" name="correo" type="email" placeholder="Correo electrónico" class="md:col-span-2 border p-2 rounded w-full">
+        <button type="submit" class="md:col-span-2 bg-[#003366] text-white py-2 rounded hover:bg-blue-800">Guardar Cliente</button>
       </form>
+      <div id="msg" class="mt-4 text-center" aria-live="polite"></div>
     </section>
 
     <!-- Tabla de clientes -->
@@ -68,6 +70,8 @@
         </table>
       </div>
     </section>
+
+  <script src="js/clientes.js"></script>
 
   </main>
 

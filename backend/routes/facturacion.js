@@ -1,4 +1,5 @@
 const express = require('express');
+const logger = require('../lib/logger');
 const router = express.Router();
 
 module.exports = (db) => {
@@ -10,7 +11,7 @@ module.exports = (db) => {
         .leftJoin('clientes', 'ventas.cliente_id', 'clientes.id');
       res.json(ventas);
     } catch (err) {
-      console.error(err);
+      try { logger.error({ err }, 'Error GET /api/facturacion'); } catch(e){}
       res.status(500).json({ error: 'db error' });
     }
   });

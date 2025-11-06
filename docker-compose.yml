@@ -1,9 +1,10 @@
 services:
   db:
     image: mysql:8.0
+    env_file: .env
     environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: sistemaventas
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - "3306:3306"
     volumes:
@@ -11,12 +12,13 @@ services:
       - db_data:/var/lib/mysql
   backend:
     build: ./backend
+    env_file: .env
     environment:
-      DB_HOST: db
-      DB_USER: root
-      DB_PASSWORD: rootpass
-      DB_NAME: sistemaventas
-      DB_PORT: 3306
+      DB_HOST: ${DB_HOST:-db}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
     ports:
       - "8080:8080"
     depends_on:

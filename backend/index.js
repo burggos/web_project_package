@@ -1,46 +1,37 @@
-const express = require('express');
-const cors = require('cors');
-const mysql = require('mysql2');
+const knex = require('knex');
+const createApp = require('./app');
+const logger = require('./lib/logger');
 
-// Importar rutas
-const clientesRoutes = require('./routes/clientes');
-const facturacionRoutes = require('./routes/facturacion');
-const inventarioRoutes = require('./routes/inventario');
-const ventasRoutes = require('./routes/ventas');
-const reportesRoutes = require('./routes/reportes');
+// 1) Crear instancia de knex (usa mysql2 como client)
+const db = knex({
+  client: 'mysql2',
+  connection: {
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASSWORD || process.env.DB_PASS || '',
+    database: process.env.DB_NAME || 'tienda_db',
+    port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306
+  },
+  pool: { min: 0, max: 7 },
+  debug: false
+});
 
-const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Middlewares
-app.use(cors());
-app.use(express.json());
+// Crear app y montar rutas (app.js exporta una función que espera `db`)
+const app = createApp(db, logger);
 
-// ✅ 1. Crear conexión a MySQL ANTES de usar las rutas
-const db = mysql.createConnection({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASS || '',
-  database: process.env.DB_NAME || 'tienda_db'
-});
-
-// ✅ 2. Conectar base de datos y luego montar rutas + levantar servidor
-db.connect(err => {
-  if (err) {
-    console.error('❌ Error al conectar a MySQL:', err);
-    process.exit(1); // Salir si falla la base de datos
-  }
-  console.log('✅ Conexión exitosa a MySQL');
-
-  // ✅ 3. Registrar las rutas una vez la base está disponible
-  app.use('/api/clientes', clientesRoutes(db));
-  app.use('/api/facturacion', facturacionRoutes(db));
-  app.use('/api/inventario', inventarioRoutes(db));
-  app.use('/api/ventas', ventasRoutes(db));
-  app.use('/api/reportes', reportesRoutes(db));
-
-  // ✅ 4. Iniciar backend
-  app.listen(PORT, () => {
-    console.log(`🚀 Backend corriendo en http://localhost:${PORT}`);
+// Probar conexión y arrancar servidor
+db.raw('select 1+1 as result')
+  .then(() => {
+    logger.info('✅ Conexión exitosa a la base de datos (knex)');
+    app.listen(PORT, () => {
+      logger.info(`🚀 Backend corriendo en http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    logger.error({ err }, '❌ Error al conectar a la base de datos (knex)');
+    process.exit(1);
   });
-});
+
+module.exports = { db, createApp };

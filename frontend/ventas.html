@@ -16,49 +16,50 @@
   <main class="p-6 max-w-4xl mx-auto">
     <h2 class="text-2xl font-semibold text-[#003366] mb-4">Registrar Nueva Venta</h2>
 
-    <!-- Formulario de Venta -->
-    <form class="bg-white p-6 rounded shadow space-y-4">
-
-      <!-- Cliente -->
-      <div>
-        <label class="block mb-1 font-medium" for="cliente">Cliente</label>
-        <select id="cliente" class="w-full border rounded p-2">
+    <!-- Contenedor de venta que será manejado por frontend/js/ventas.js -->
+    <section class="bg-white p-6 rounded shadow">
+      <div class="mb-4">
+        <label class="block mb-1 font-medium" for="cliente_id">Cliente</label>
+        <select id="cliente_id" class="w-full border rounded p-2">
           <option value="">Seleccionar cliente</option>
-          <option>Juan Pérez</option>
-          <option>María Gómez</option>
-          <option>Empresa XYZ</option>
+          <!-- Opciones pueden ser cargadas dinámicamente desde /api/clientes en el futuro -->
         </select>
       </div>
 
-      <!-- Producto -->
-      <div>
-        <label class="block mb-1 font-medium" for="producto">Producto</label>
-        <select id="producto" class="w-full border rounded p-2" onchange="actualizarPrecio()">
-          <option value="">Seleccionar producto</option>
-          <option value="Producto A|20000">Producto A - $20.000</option>
-          <option value="Producto B|15000">Producto B - $15.000</option>
-          <option value="Producto C|10000">Producto C - $10.000</option>
-        </select>
+      <div class="mb-4">
+        <h3 class="font-medium mb-2">Productos</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full border border-gray-300 text-sm text-left">
+            <thead class="bg-[#003366] text-white">
+              <tr>
+                <th class="p-2 border">Producto</th>
+                <th class="p-2 border">Precio</th>
+                <th class="p-2 border">Stock</th>
+                <th class="p-2 border">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody id="tablaProductos">
+              <!-- Renglones creados por frontend/js/ventas.js -->
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <!-- Cantidad -->
-      <div>
-        <label class="block mb-1 font-medium" for="cantidad">Cantidad</label>
-        <input type="number" id="cantidad" class="w-full border rounded p-2" value="1" min="1" onchange="calcularTotal()">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-gray-700">Total: <span id="totalVenta">0.00</span></p>
+        </div>
+        <div class="flex gap-2">
+          <button id="btnRegistrarVenta" class="bg-[#003366] text-white px-6 py-2 rounded hover:bg-blue-800">Registrar Venta</button>
+        </div>
       </div>
 
-      <!-- Precio y total -->
-      <div>
-        <p class="text-gray-700">Precio unitario: <span id="precioUnitario">$0</span></p>
-        <p class="text-xl font-semibold">Total: <span id="total">$0</span></p>
-      </div>
-
-      <!-- Botón -->
-      <button type="button" onclick="registrarVenta()" class="bg-[#003366] text-white px-6 py-2 rounded hover:bg-blue-800">
-        Registrar Venta
-      </button>
-    </form>
+      <div id="msg" class="mt-4 text-center font-semibold" aria-live="polite"></div>
+    </section>
   </main>
+
+  <!-- Incluir el JS que maneja la lógica de ventas -->
+  <script src="js/ventas.js"></script>
 
   <script>
     let precio = 0;
