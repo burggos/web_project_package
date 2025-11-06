@@ -3,7 +3,6 @@ const cors = require('cors');
 
 // Rutas (funciones que reciben `db` y devuelven un router)
 const clientesRoutes = require('./routes/clientes');
-const facturacionRoutes = require('./routes/facturacion');
 const inventarioRoutes = require('./routes/inventario');
 const ventasRoutes = require('./routes/ventas');
 const reportesRoutes = require('./routes/reportes');
@@ -19,7 +18,7 @@ module.exports = function createApp(db, logger) {
   // Registrar rutas
   app.use('/api/clientes', clientesRoutes(db));
   app.use('/api/productos', productosRoutes(db));
-  app.use('/api/facturacion', facturacionRoutes(db));
+  // facturacion module removed
   app.use('/api/inventario', inventarioRoutes(db));
   app.use('/api/ventas', ventasRoutes(db));
   app.use('/api/reportes', reportesRoutes(db));

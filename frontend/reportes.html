@@ -11,6 +11,7 @@ if (!localStorage.getItem('usuario')) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Módulo de Reportes</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body class="bg-gray-100 text-gray-800 min-h-screen">
   <nav class="bg-white shadow p-4 flex justify-end mb-6">
@@ -54,19 +55,8 @@ if (!localStorage.getItem('usuario')) {
               <th class="p-2 border">Valor</th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="bg-gray-50 hover:bg-gray-100">
-              <td class="p-2 border">2025-06-10</td>
-              <td class="p-2 border">Venta: Producto A</td>
-              <td class="p-2 border">2</td>
-              <td class="p-2 border">$40.000</td>
-            </tr>
-            <tr class="bg-gray-50 hover:bg-gray-100">
-              <td class="p-2 border">2025-06-11</td>
-              <td class="p-2 border">Ingreso: Producto B</td>
-              <td class="p-2 border">10</td>
-              <td class="p-2 border">$150.000</td>
-            </tr>
+          <tbody id="reportes-tbody">
+            <!-- filas generadas dinámicamente -->
           </tbody>
         </table>
       </div>
@@ -84,6 +74,39 @@ if (!localStorage.getItem('usuario')) {
   <footer class="bg-[#003366] text-white text-center p-4 mt-10">
     <p>&copy; 2025 Sistema de Gestión - Reportes</p>
   </footer>
+
+  <script>
+    // Cargar ventas con detalle y pintar en la tabla
+    (async function loadReportes(){
+      if (!localStorage.getItem('usuario')) { window.location.href = 'login.html'; }
+      try {
+        const res = await fetch('/api/reportes/ventas/detalle');
+        if (!res.ok) throw new Error('Error al obtener reportes');
+        const ventas = await res.json();
+        const tbody = document.getElementById('reportes-tbody');
+        if (!ventas || ventas.length === 0) {
+          tbody.innerHTML = '<tr><td class="p-2 border" colspan="4">No hay ventas registradas.</td></tr>';
+          return;
+        }
+        const rows = [];
+        ventas.forEach(venta => {
+          const fecha = new Date(venta.fecha).toLocaleString();
+          const cliente = venta.cliente && (venta.cliente.nombres || venta.cliente.apellidos) ? `${venta.cliente.nombres || ''} ${venta.cliente.apellidos || ''}`.trim() : 'Cliente desconocido';
+          (venta.items || []).forEach(item => {
+            const detalle = `${cliente} — ${item.producto_nombre}`;
+            const cantidad = item.cantidad;
+            const valor = (Number(item.precio) * Number(item.cantidad)).toFixed(2);
+            rows.push(`<tr class="bg-gray-50 hover:bg-gray-100"><td class="p-2 border">${fecha}</td><td class="p-2 border">${detalle}</td><td class="p-2 border">${cantidad}</td><td class="p-2 border">$${Number(valor).toLocaleString()}</td></tr>`);
+          });
+        });
+        tbody.innerHTML = rows.join('')
+      } catch (err) {
+        console.error(err);
+        const tbody = document.getElementById('reportes-tbody');
+        tbody.innerHTML = `<tr><td class="p-2 border" colspan="4">Error cargando reportes: ${err.message}</td></tr>`;
+      }
+    })();
+  </script>
 
 </body>
 </html>

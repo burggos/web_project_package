@@ -19,174 +19,115 @@
   color: #fff;
   box-shadow: 0 4px 16px rgba(30,144,255,0.15);
 }
-/* 🎯 Estilos generales */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f6f8;
-  color: #222;
-  margin: 0;
+:root{
+  --brand: #003366;
+  --accent: #1E90FF;
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --radius: 10px;
 }
 
-/* ✅ Encabezado */
-header {
-  background: #003366;
-  color: #fff;
-  padding: 14px;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+/* Reset básico */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:#0f172a;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* ✅ Menú de navegación superior */
-nav {
-  background: #e9eef5;
-  padding: 10px 0;
-}
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-nav a {
-  text-decoration: none;
-  color: #003366;
-  font-weight: bold;
-  padding: 8px 14px;
-  border-radius: 6px;
-  transition: 0.2s;
-}
-nav a:hover {
-  background: #003366;
-  color: #fff;
+/* Contenedor principal centrado */
+main{
+  padding:28px 16px;
+  min-height:calc(100vh - 160px);
 }
 
-/* ✅ Contenido principal */
-main {
-  padding: 20px;
-  min-height: 70vh;
+/* Header */
+header{
+  background:var(--brand);
+  color:#fff;
+  padding:18px 22px;
+  border-radius:var(--radius);
+  box-shadow:0 6px 18px rgba(2,6,23,0.12);
 }
 
-/* ✅ Pie de página */
-footer {
-  background: #003366;
-  color: #fff;
-  text-align: center;
-  padding: 12px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  font-size: 0.9rem;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+/* Nav - botón Menú (ubicado en cada página) */
+.btn-menu{
+  display:inline-block;
+  background:var(--brand);
+  color:#fff;
+  padding:12px 22px;
+  border-radius:12px;
+  font-weight:600;
+  box-shadow:0 6px 18px rgba(2,6,23,0.12);
+  transition:transform .12s ease, box-shadow .12s ease;
+  text-decoration:none;
+}
+.btn-menu:hover{transform:translateY(-2px); box-shadow:0 10px 28px rgba(2,6,23,0.14)}
+
+/* Cards / secciones */
+.card{
+  background:var(--card);
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 6px 18px rgba(2,6,23,0.06);
 }
 
-/* ✅ Formularios */
-form {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  max-width: 450px;
-  margin: auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+/* Formularios */
+form{width:100%}
+input[type=text], input[type=number], input[type=email], select, textarea{
+  width:100%;
+  padding:12px 14px;
+  border:1px solid #e6e9ee;
+  border-radius:10px;
+  background:#fff;
+  font-size:0.98rem;
 }
-form input, form select, form button {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
+input:focus, select:focus, textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 6px 18px rgba(30,144,255,0.08)}
+.form-row{display:flex;gap:12px}
+
+.btn {
+  display:inline-block;
+  background:var(--brand);
+  color:#fff;
+  padding:10px 16px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
 }
-form input:focus, form select:focus {
-  border-color: #1E90FF;
-  outline: none;
-  box-shadow: 0 0 5px rgba(30,144,255,0.4);
-}
-form button {
-  background: #1E90FF;
-  color: white;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
-}
-form button:hover {
-  background: #155fa0;
+.btn.secondary{background:#f3f4f6;color:var(--muted);border:1px solid #e5e7eb}
+.btn:active{transform:translateY(1px)}
+
+/* Mensajes */
+.mensaje{padding:10px 12px;border-radius:8px;margin-top:12px;font-weight:600;text-align:center}
+.mensaje.sucess{background:#ecfdf5;color:#065f46}
+.mensaje.error{background:#ffeded;color:#7f1d1d}
+
+/* Tablas */
+.table-wrap{overflow:auto;border-radius:10px;background:var(--card);box-shadow:0 6px 18px rgba(2,6,23,0.04)}
+table{width:100%;border-collapse:collapse;font-size:0.95rem}
+th, td{padding:12px 14px;border-bottom:1px solid #eef2f6;text-align:left}
+th{background:linear-gradient(90deg,var(--brand),#05457a);color:#fff;font-weight:700}
+tr:hover td{background:#fbfdff}
+
+/* Acciones */
+.action-btn{padding:6px 10px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+.action-btn.edit{background:#f59e0b;color:#fff}
+.action-btn.delete{background:#ef4444;color:#fff}
+
+/* Responsive tweaks */
+@media (max-width:768px){
+  .form-row{flex-direction:column}
+  input[type=text], select{font-size:0.95rem}
 }
 
-/* ✅ Tablas generales */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-  background: white;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-th, td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-th {
-  background: #003366;
-  color: white;
-}
-tr:hover {
-  background: #f0f4ff;
-}
+/* Small utilities */
+.muted{color:var(--muted)}
+.spaced{margin-top:16px}
 
-/* ✅ Tarjetas del menú principal */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  padding: 1rem 2rem;
-}
-.card {
-  background: white;
-  border-radius: 10px;
-  padding: 1rem;
-  text-decoration: none;
-  color: black;
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.card h3 {
-  margin: 0 0 10px;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
-}
-
-/* ✅ Mensajes de alerta o información */
-#msg, .mensaje {
-  text-align: center;
-  font-weight: bold;
-  padding: 10px;
-  margin-top: 10px;
-}
-.sucess { color: green; }
-.error { color: red; }
-
-/* ✅ Botón flotante (si quieres usarlo más adelante) */
-.btn-flotante {
-  position: fixed;
-  bottom: 70px;
-  right: 20px;
-  background: #1E90FF;
-  color: white;
-  border: none;
-  padding: 12px 16px;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  font-size: 1rem;
-  transition: 0.2s;
-}
-.btn-flotante:hover {
-  background: #155fa0;
-}
+/* Helper to reduce footer overlap */
+footer{margin-top:28px}

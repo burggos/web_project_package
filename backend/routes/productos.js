@@ -42,5 +42,18 @@ module.exports = (db) => {
     }
   });
 
+  // Crear nuevo producto
+  router.post('/', async (req, res) => {
+    try {
+      const { nombre, descripcion, precio } = req.body;
+      if (!nombre || precio === undefined) return res.status(400).json({ error: 'nombre y precio son obligatorios' });
+      const precioNum = parseFloat(precio) || 0;
+      const [id] = await db('productos').insert({ nombre, descripcion, precio: precioNum });
+      res.status(201).json({ id });
+    } catch (err) {
+      res.status(500).json({ error: err.message || 'Error al crear producto' });
+    }
+  });
+
   return router;
 };
